@@ -2,7 +2,7 @@ import requests
 import json
 import pymongo
 
-
+SSS = ''
 
 NEW_LAND_REGION_URL = 'https://new.land.naver.com/api/regions/list?cortarNo='
 NEW_LAND_COMPLEX_URL = 'https://new.land.naver.com/api/regions/complexes?cortarNo='
