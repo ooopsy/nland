@@ -37,8 +37,11 @@ def save_complex(cortarNo):
        dbaccess.save_complex(complex)
 
 
+
+
+
 if __name__ == "__main__":
-    get_save_region('4119000000')
+    get_save_region('0000000000')
 
 
 
