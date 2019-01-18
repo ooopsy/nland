@@ -17,24 +17,33 @@ def artical(complex_no, pageno):
         ar['key'] = key
 
         exits = dbaccess.exit_artical(ar)
-        if exits > 0 :
-            print('has:' + key)
+        if not exits:
+            print("exits")
+            users = dbaccess.get_complex_user(complex_no);
+            for user in users:
+                print("add pushlist")
+                dbaccess.add_user_pushlist(user, key);
+            dbaccess.save_artical(ar)
 
-        dbaccess.save_artical(ar)
 
     if res['isMoreData'] :
         artical(complex_no, pageno +1)
 
 
 if __name__ == '__main__' :
+
     complexes = ('14543', '10689', '25606', '14544', '102807', '102691')
-
+    complexes = ('25606')
     for complex in complexes:
-        artical(complex, 1)
+        artical('25606', 1)
+    
+    
+    '''
+
+    dbaccess.drop_artical()
 
 
-
-
+     '''
 
 
 
