@@ -6,16 +6,21 @@ __ARTICLE_DETAIL__ = 'https://land.naver.com/article/articleDetailInfo.nhn?atclN
 
 
 
-def push(time):
+def push():
+    print("pusher run")
+
+    time = 1600
     user_nos =dbaccess.get_time_push_users(time)
     for user_no in user_nos:
         user_no = user_no.decode('utf-8')
         user_info = dbaccess.get_user_info(user_no)
         user_info = json.loads(user_info.decode('utf-8').replace("'", '"'))
+
         user_articles = dbaccess.get_user_pushlist(user_no)
 
         message = ''
         for article_no in user_articles:
+            dbaccess.remove_user_pushlist(user_no, article_no)
             article_no = article_no.decode('utf-8')
             article = dbaccess.get_article_detail(article_no)
             article = json.loads(article.decode('utf-8').replace("'", '"').replace("True", '"True"').replace("False", '"False"'))
@@ -28,9 +33,8 @@ def push(time):
             message += '\r\n'
             message += '링크:<a>{0}</a>'.format(article_link)
 
-
-
-        sender.send(user_info['email'], message.encode('utf-8'))
+        if len(message) > 0:
+            sender.send(user_info['email'], message.encode('utf-8'))
 
 
 if __name__ == '__main__':
