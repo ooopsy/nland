@@ -28,6 +28,12 @@ def drop_artical():
     for key in keys:
         r.hdel(__ARTICAL__, key.decode('utf-8'))
 
+def drop_all():
+    keys  = r.keys("*")
+
+    for key in keys:
+        r.delete(key.decode('utf-8'))
+
 
 def exit_artical(artical):
     key = artical['key']

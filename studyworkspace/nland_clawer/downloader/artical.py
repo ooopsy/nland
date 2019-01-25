@@ -34,11 +34,12 @@ def my_artical():
 
 
 if __name__ == '__main__' :
-
-
     '''
+    dbaccess.drop_all()
+
+   
     dbaccess.drop_artical()
-  '''
+    '''
 
     '''
     
